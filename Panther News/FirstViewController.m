@@ -45,8 +45,15 @@
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
-    NSURLSessionDataTask * task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(data);
+    NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            NSArray* object = (NSArray *)[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"%@", object[0]);
+            
+            NSDictionary *dictionary = (NSDictionary *)object[0];
+            NSLog(@"%@", dictionary[@"title"][@"rendered"]);
+        }
     }];
     
     [task resume];
