@@ -35,6 +35,21 @@
     } else {
         self.navigationController.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
     }
+    
+    [self downloadTestData];
+}
+
+- (void)downloadTestData {
+    NSLog(@"Inside");
+    NSURL *url = [NSURL URLWithString:@"https://franklinpanthers.us/wp-json/wp/v2/posts"];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionDataTask * task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(data);
+    }];
+    
+    [task resume];
 }
 
 - (void)refresh:(id)sender {
