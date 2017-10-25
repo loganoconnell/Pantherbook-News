@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "TableViewCell.h"
+#import "SecondViewController.h"
 
 @interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

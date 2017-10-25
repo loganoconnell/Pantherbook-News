@@ -31,9 +31,9 @@
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     
     self.navigationItem.title = @"PANTHERBOOK";
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.prefersLargeTitles = NO;
         self.navigationController.navigationBar.prefersLargeTitles = YES;
         self.navigationController.navigationBar.largeTitleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
     }
@@ -211,6 +211,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SecondViewController *vc = (SecondViewController *)[sb instantiateViewControllerWithIdentifier:@"secondVC"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {

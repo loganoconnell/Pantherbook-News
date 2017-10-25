@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		670737881FA0C07C006E5219 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 670737871FA0C07C006E5219 /* SecondViewController.m */; };
 		677B918C1F3AB99C00E6A3E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 677B918B1F3AB99C00E6A3E7 /* main.m */; };
 		677B918F1F3AB99C00E6A3E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 677B918E1F3AB99C00E6A3E7 /* AppDelegate.m */; };
 		677B91921F3AB99C00E6A3E7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677B91911F3AB99C00E6A3E7 /* FirstViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		670737861FA0C07C006E5219 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		670737871FA0C07C006E5219 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		677B91871F3AB99C00E6A3E7 /* Panther News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Panther News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		677B918B1F3AB99C00E6A3E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		677B918D1F3AB99C00E6A3E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +76,8 @@
 				677B918E1F3AB99C00E6A3E7 /* AppDelegate.m */,
 				677B91901F3AB99C00E6A3E7 /* FirstViewController.h */,
 				677B91911F3AB99C00E6A3E7 /* FirstViewController.m */,
+				670737861FA0C07C006E5219 /* SecondViewController.h */,
+				670737871FA0C07C006E5219 /* SecondViewController.m */,
 				67A90CF31F7175E0003DDC89 /* TableViewCell.xib */,
 				677B91AA1F3AC2FF00E6A3E7 /* TableViewCell.h */,
 				677B91AB1F3AC2FF00E6A3E7 /* TableViewCell.m */,
@@ -168,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				670737881FA0C07C006E5219 /* SecondViewController.m in Sources */,
 				677B918F1F3AB99C00E6A3E7 /* AppDelegate.m in Sources */,
 				677B91AC1F3AC2FF00E6A3E7 /* TableViewCell.m in Sources */,
 				677B91921F3AB99C00E6A3E7 /* FirstViewController.m in Sources */,
