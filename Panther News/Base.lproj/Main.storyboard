@@ -43,9 +43,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-rJ-ISB">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a7o-bO-MUV">
+                                <rect key="frame" x="177" y="291" width="20" height="20"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UJ1-rJ-ISB">
                                 <rect key="frame" x="20" y="0.0" width="335" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <scrollView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="113-Ih-pIn">
@@ -60,9 +63,18 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UJ1-rJ-ISB" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="1fg-xY-P8g"/>
+                            <constraint firstItem="UJ1-rJ-ISB" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="4" id="2au-9L-2vP"/>
+                            <constraint firstItem="UJ1-rJ-ISB" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="9W7-pM-8XR"/>
+                            <constraint firstItem="a7o-bO-MUV" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="H0C-VB-xan"/>
+                            <constraint firstItem="UJ1-rJ-ISB" firstAttribute="centerY" secondItem="a7o-bO-MUV" secondAttribute="centerY" id="ow8-NO-8w4"/>
+                            <constraint firstItem="UJ1-rJ-ISB" firstAttribute="centerX" secondItem="a7o-bO-MUV" secondAttribute="centerX" id="xtP-a2-Kgc"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Tfd-uF-cfC"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="a7o-bO-MUV" id="lpm-9o-GT8"/>
                         <outlet property="tableView" destination="UJ1-rJ-ISB" id="KEh-Wz-OuW"/>
                         <segue destination="ewf-i1-lUk" kind="show" identifier="pushSecondVC" id="iU5-tO-onw"/>
                     </connections>
@@ -85,52 +97,54 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BHh-aW-mXF">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="uq4-nh-yUR"/>
-                                </constraints>
                             </imageView>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEF-uJ-zN7">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEF-uJ-zN7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERQ-ho-jMW">
-                                        <rect key="frame" x="8" y="52" width="359" height="90"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="ERQ-ho-jMW" firstAttribute="leading" secondItem="JEF-uJ-zN7" secondAttribute="leadingMargin" id="8cc-Wt-su6"/>
-                                    <constraint firstItem="ERQ-ho-jMW" firstAttribute="bottom" secondItem="JEF-uJ-zN7" secondAttribute="bottomMargin" id="M3e-MN-ufe"/>
-                                    <constraint firstItem="ERQ-ho-jMW" firstAttribute="top" secondItem="JEF-uJ-zN7" secondAttribute="top" constant="52" id="cZX-Mi-CTO"/>
-                                    <constraint firstItem="ERQ-ho-jMW" firstAttribute="trailing" secondItem="JEF-uJ-zN7" secondAttribute="trailingMargin" id="jSJ-FO-ylr"/>
-                                </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S3g-lT-4VQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERQ-ho-jMW">
+                                <rect key="frame" x="8" y="50" width="359" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="Edh-Ra-aX5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S3g-lT-4VQ">
                                 <rect key="frame" x="16" y="150" width="343" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BHh-aW-mXF" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leading" id="7ZW-qD-L4u"/>
-                            <constraint firstAttribute="trailing" secondItem="BHh-aW-mXF" secondAttribute="trailing" id="8Yh-yk-vfa"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="centerX" secondItem="S3g-lT-4VQ" secondAttribute="centerX" id="FWp-X0-CjY"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="top" secondItem="tx0-ZL-b4a" secondAttribute="bottom" id="RDO-2E-K4B"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="bottom" secondItem="BHh-aW-mXF" secondAttribute="bottom" id="T2R-eS-l01"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="bottom" secondItem="k23-uX-AQv" secondAttribute="top" id="YbG-CN-dWR"/>
-                            <constraint firstItem="BHh-aW-mXF" firstAttribute="trailing" secondItem="JEF-uJ-zN7" secondAttribute="trailing" id="al5-ZK-nvb"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="top" secondItem="JEF-uJ-zN7" secondAttribute="bottom" id="cmj-fY-dCR"/>
-                            <constraint firstItem="BHh-aW-mXF" firstAttribute="leading" secondItem="JEF-uJ-zN7" secondAttribute="leading" id="ov2-IW-fwB"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" id="p9g-Sv-XN8"/>
-                            <constraint firstItem="BHh-aW-mXF" firstAttribute="top" secondItem="JEF-uJ-zN7" secondAttribute="top" id="wXB-zm-u0t"/>
+                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="centerX" secondItem="S3g-lT-4VQ" secondAttribute="centerX" id="1YR-mL-7Kg"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="top" secondItem="BHh-aW-mXF" secondAttribute="bottom" id="5P8-gQ-bXB"/>
+                            <constraint firstAttribute="trailing" secondItem="BHh-aW-mXF" secondAttribute="trailing" id="CU1-Yk-NVJ"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="bottom" secondItem="BHh-aW-mXF" secondAttribute="bottom" id="HMd-OE-qpX"/>
+                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="top" secondItem="tx0-ZL-b4a" secondAttribute="bottom" constant="50" id="JmE-fc-w8J"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="trailing" secondItem="JEF-uJ-zN7" secondAttribute="trailing" id="K5x-1K-tfx"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="leading" secondItem="BHh-aW-mXF" secondAttribute="leading" id="OR7-GF-1U6"/>
+                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" constant="-8" id="RJA-Sp-DdP"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="top" secondItem="tx0-ZL-b4a" secondAttribute="bottom" id="ROX-o9-2LX"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="top" secondItem="ERQ-ho-jMW" secondAttribute="bottom" constant="10" id="Xgh-0A-ZYt"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" id="ayx-3u-8uV"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="top" secondItem="BHh-aW-mXF" secondAttribute="top" id="gCZ-hI-qRb"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leading" id="mYb-L8-clN"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="bottom" secondItem="k23-uX-AQv" secondAttribute="top" id="sJu-SX-pnq"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="centerX" secondItem="ERQ-ho-jMW" secondAttribute="centerX" id="z5Z-rx-rUJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9yh-lk-n14"/>
+                    <connections>
+                        <outlet property="imageView" destination="BHh-aW-mXF" id="DXm-B2-Ebo"/>
+                        <outlet property="textView" destination="S3g-lT-4VQ" id="qoW-DM-ri6"/>
+                        <outlet property="titleLabel" destination="ERQ-ho-jMW" id="dtN-qL-kui"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7C-qG-kv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

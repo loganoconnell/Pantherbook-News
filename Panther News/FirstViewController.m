@@ -23,7 +23,7 @@
     
     // Do any additional setup after loading the view, typically from a nib.
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.tintColor = [UIColor whiteColor];
+    refresh.tintColor = [UIColor blackColor];
     [refresh addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.tableView.refreshControl = refresh;
     
@@ -32,6 +32,7 @@
     
     self.navigationItem.title = @"PANTHERBOOK";
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.prefersLargeTitles = YES;
@@ -73,6 +74,8 @@
             }
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                self.loadingIndicator.hidden = YES;
+                
                 [self.tableView reloadData];
                 
                 [self.tableView.refreshControl endRefreshing];
@@ -123,7 +126,6 @@
 }
 
 - (void)refresh:(id)sender {
-    self.tableView.refreshControl.tintColor = [UIColor whiteColor];
     [self downloadMainData];
 }
 
@@ -168,6 +170,7 @@
         customCell.titleLabel.textColor = [UIColor blackColor];
         
         customCell.subtitleLabel.attributedText = self.subtitles[indexPath.section];
+        customCell.subtitleLabel.font = [UIFont systemFontOfSize:18];
         customCell.subtitleLabel.textColor = [UIColor darkGrayColor];
         customCell.subtitleLabel.adjustsFontSizeToFitWidth = NO;
         customCell.subtitleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -214,6 +217,15 @@
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SecondViewController *vc = (SecondViewController *)[sb instantiateViewControllerWithIdentifier:@"secondVC"];
+    NSLog(@"CAlled");
+    
+    NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
+    vc.bannerImage = self.imageData[key];
+    
+    vc.titleText = self.titles[indexPath.section];
+    vc.text = self.subtitles[indexPath.section];
+    
+    vc.postLink = self.posts[indexPath.section][@"link"];
     
     [self.navigationController pushViewController:vc animated:YES];
 }
