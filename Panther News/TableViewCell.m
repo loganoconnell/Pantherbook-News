@@ -22,6 +22,14 @@
     // Configure the view for the selected state
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CAShapeLayer * maskLayer = [CAShapeLayer layer];
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:(CGSize){10, 10}].CGPath;
+    self.topImageView.layer.mask = maskLayer;
+}
+
 - (void)shadows:(BOOL)yes {
     if (yes) {
         self.layer.cornerRadius = 10;
