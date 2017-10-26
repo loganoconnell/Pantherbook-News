@@ -103,11 +103,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERQ-ho-jMW">
-                                <rect key="frame" x="8" y="50" width="359" height="90"/>
+                                <rect key="frame" x="8" y="0.0" width="359" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="Edh-Ra-aX5"/>
+                                    <constraint firstAttribute="height" constant="90" id="Kbt-TZ-D1E"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -119,28 +119,41 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfT-cO-IHT">
+                                <rect key="frame" x="12" y="90" width="347" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ynQ-bh-nld"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="centerX" secondItem="S3g-lT-4VQ" secondAttribute="centerX" id="1YR-mL-7Kg"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="top" secondItem="BHh-aW-mXF" secondAttribute="bottom" id="5P8-gQ-bXB"/>
-                            <constraint firstAttribute="trailing" secondItem="BHh-aW-mXF" secondAttribute="trailing" id="CU1-Yk-NVJ"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="bottom" secondItem="BHh-aW-mXF" secondAttribute="bottom" id="HMd-OE-qpX"/>
-                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="top" secondItem="tx0-ZL-b4a" secondAttribute="bottom" constant="50" id="JmE-fc-w8J"/>
-                            <constraint firstItem="BHh-aW-mXF" firstAttribute="trailing" secondItem="JEF-uJ-zN7" secondAttribute="trailing" id="K5x-1K-tfx"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="leading" secondItem="BHh-aW-mXF" secondAttribute="leading" id="OR7-GF-1U6"/>
-                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" constant="-8" id="RJA-Sp-DdP"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="top" secondItem="tx0-ZL-b4a" secondAttribute="bottom" id="ROX-o9-2LX"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="top" secondItem="ERQ-ho-jMW" secondAttribute="bottom" constant="10" id="Xgh-0A-ZYt"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" id="ayx-3u-8uV"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="top" secondItem="BHh-aW-mXF" secondAttribute="top" id="gCZ-hI-qRb"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leading" id="mYb-L8-clN"/>
-                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="bottom" secondItem="k23-uX-AQv" secondAttribute="top" id="sJu-SX-pnq"/>
-                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="centerX" secondItem="ERQ-ho-jMW" secondAttribute="centerX" id="z5Z-rx-rUJ"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="centerX" secondItem="ERQ-ho-jMW" secondAttribute="centerX" id="16b-bC-Aji"/>
+                            <constraint firstItem="dfT-cO-IHT" firstAttribute="trailing" secondItem="S3g-lT-4VQ" secondAttribute="trailing" id="Bic-4Z-g0F"/>
+                            <constraint firstItem="ERQ-ho-jMW" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" constant="-8" id="CGd-sg-BSX"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="bottom" secondItem="dfT-cO-IHT" secondAttribute="bottom" id="EqS-po-ghX"/>
+                            <constraint firstAttribute="trailing" secondItem="JEF-uJ-zN7" secondAttribute="trailing" id="I6Z-9x-AHE"/>
+                            <constraint firstItem="dfT-cO-IHT" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" constant="-4" id="RCL-OR-inB"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="bottom" secondItem="BHh-aW-mXF" secondAttribute="bottom" id="W1C-t1-HoK"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="bottom" secondItem="k23-uX-AQv" secondAttribute="top" id="ba6-c4-AH9"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="trailing" secondItem="JEF-uJ-zN7" secondAttribute="trailing" id="bzw-XO-997"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leading" id="el0-3M-3FT"/>
+                            <constraint firstItem="dfT-cO-IHT" firstAttribute="top" secondItem="ERQ-ho-jMW" secondAttribute="bottom" id="fY5-fH-ecZ"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="leading" secondItem="X6s-Th-bHf" secondAttribute="leadingMargin" id="fmf-7U-pWd"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="top" secondItem="BHh-aW-mXF" secondAttribute="top" id="hYh-Md-Gza"/>
+                            <constraint firstItem="S3g-lT-4VQ" firstAttribute="top" secondItem="dfT-cO-IHT" secondAttribute="bottom" id="nAK-cl-eLl"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="top" secondItem="tx0-ZL-b4a" secondAttribute="bottom" id="nNk-vZ-UUc"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="centerX" secondItem="S3g-lT-4VQ" secondAttribute="centerX" id="obO-Y9-U2m"/>
+                            <constraint firstItem="BHh-aW-mXF" firstAttribute="top" secondItem="ERQ-ho-jMW" secondAttribute="top" id="ogi-et-c9I"/>
+                            <constraint firstItem="JEF-uJ-zN7" firstAttribute="leading" secondItem="BHh-aW-mXF" secondAttribute="leading" id="w7W-8v-TWF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9yh-lk-n14"/>
                     <connections>
+                        <outlet property="authorLabel" destination="dfT-cO-IHT" id="H14-SB-DKO"/>
                         <outlet property="imageView" destination="BHh-aW-mXF" id="DXm-B2-Ebo"/>
                         <outlet property="textView" destination="S3g-lT-4VQ" id="qoW-DM-ri6"/>
                         <outlet property="titleLabel" destination="ERQ-ho-jMW" id="dtN-qL-kui"/>

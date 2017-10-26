@@ -11,9 +11,11 @@
 @interface SecondViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) UIImage *bannerImage;
 @property (strong, nonatomic) NSAttributedString *titleText;
+@property (strong, nonatomic) NSString *authorText;
 @property (strong, nonatomic) NSAttributedString *text;
 @property (strong, nonatomic) NSString *postLink;
 @end

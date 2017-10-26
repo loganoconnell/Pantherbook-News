@@ -13,8 +13,11 @@
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) NSMutableDictionary *images;
 @property (strong, nonatomic) NSMutableDictionary *imageData;
+@property (strong, nonatomic) NSMutableDictionary *authors;
 @property (strong, nonatomic) NSMutableArray *titles;
 @property (strong, nonatomic) NSMutableArray *subtitles;
+@property (nonatomic) BOOL imagesDownloaded;
+@property (nonatomic) BOOL authorsDownloaded;
 @end
 
 @implementation FirstViewController
@@ -45,6 +48,7 @@
     
     self.images = [NSMutableDictionary dictionary];
     self.imageData = [NSMutableDictionary dictionary];
+    self.authors = [NSMutableDictionary dictionary];
     self.titles = [NSMutableArray array];
     self.subtitles = [NSMutableArray array];
     
@@ -82,6 +86,8 @@
             }];
             
             [self downloadImageMetadata];
+            
+            [self downloadAuthorData];
         }
     }];
     
@@ -120,8 +126,39 @@
     
     if (self.imageData.count == self.posts.count) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSLog(@"Go ");
+            self.imagesDownloaded = YES;
+            
             [self.tableView reloadData];
         }];
+    }
+}
+
+- (void)downloadAuthorData {
+    for (NSDictionary *post in self.posts) {
+        NSString *urlString = [NSString stringWithFormat:@"https://franklinpanthers.us/wp-json/wp/v2/users/%@", post[@"author"]];
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        
+        NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData *imageData, NSURLResponse *response, NSError *error) {
+            NSDictionary *authorDictionary = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:imageData options:0 error:nil];
+            
+            NSString *name = authorDictionary[@"name"];
+            
+            NSString *key = [NSString stringWithFormat:@"%@", post[@"author"]];
+            
+            [self.authors setObject:name forKey:key];
+            
+            if ([self.posts indexOfObject:post] == self.posts.count - 1) {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    self.authorsDownloaded = YES;
+                }];
+            }
+        }];
+        
+        [task resume];
     }
 }
 
@@ -215,19 +252,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SecondViewController *vc = (SecondViewController *)[sb instantiateViewControllerWithIdentifier:@"secondVC"];
-    NSLog(@"CAlled");
-    
-    NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
-    vc.bannerImage = self.imageData[key];
-    
-    vc.titleText = self.titles[indexPath.section];
-    vc.text = self.subtitles[indexPath.section];
-    
-    vc.postLink = self.posts[indexPath.section][@"link"];
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.imagesDownloaded && self.authorsDownloaded) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        SecondViewController *vc = (SecondViewController *)[sb instantiateViewControllerWithIdentifier:@"secondVC"];
+        
+        NSString *imageKey = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
+        vc.bannerImage = self.imageData[imageKey];
+        
+        vc.titleText = self.titles[indexPath.section];
+        
+        NSString *authorKey = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"author"]];
+        vc.authorText = self.authors[authorKey];
+        
+        vc.text = self.subtitles[indexPath.section];
+        
+        vc.postLink = self.posts[indexPath.section][@"link"];
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {

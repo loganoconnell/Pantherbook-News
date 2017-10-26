@@ -24,8 +24,13 @@
     
     self.titleLabel.attributedText = self.titleText;
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.font = [UIFont systemFontOfSize:25];
+    self.titleLabel.font = [UIFont systemFontOfSize:28];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.authorLabel.text = [NSString stringWithFormat:@"By %@", self.authorText];
+    self.authorLabel.textColor = [UIColor lightGrayColor];
+    self.authorLabel.font = [UIFont systemFontOfSize:20];
+    self.authorLabel.textAlignment = NSTextAlignmentCenter;
     
     NSMutableAttributedString *newText = [[NSMutableAttributedString alloc] initWithString:@"\n" attributes:@{}];
     [newText appendAttributedString:self.text];
