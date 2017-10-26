@@ -13,10 +13,8 @@
 		677B91921F3AB99C00E6A3E7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 677B91911F3AB99C00E6A3E7 /* FirstViewController.m */; };
 		677B91981F3AB99C00E6A3E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 677B91961F3AB99C00E6A3E7 /* Main.storyboard */; };
 		677B919D1F3AB99C00E6A3E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 677B919B1F3AB99C00E6A3E7 /* LaunchScreen.storyboard */; };
-		677B91A91F3ABE4800E6A3E7 /* Shield.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 677B91A81F3ABE4800E6A3E7 /* Shield.jpg */; };
 		677B91AC1F3AC2FF00E6A3E7 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 677B91AB1F3AC2FF00E6A3E7 /* TableViewCell.m */; };
 		677B91AE1F3ACC8000E6A3E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 677B91AD1F3ACC8000E6A3E7 /* Assets.xcassets */; };
-		67A90CF21F7175AF003DDC89 /* Shield2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A90CF01F717464003DDC89 /* Shield2.jpg */; };
 		67A90CF41F7175E0003DDC89 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A90CF31F7175E0003DDC89 /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -32,11 +30,9 @@
 		677B91971F3AB99C00E6A3E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		677B919C1F3AB99C00E6A3E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		677B919E1F3AB99C00E6A3E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		677B91A81F3ABE4800E6A3E7 /* Shield.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Shield.jpg; sourceTree = "<group>"; };
 		677B91AA1F3AC2FF00E6A3E7 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		677B91AB1F3AC2FF00E6A3E7 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		677B91AD1F3ACC8000E6A3E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		67A90CF01F717464003DDC89 /* Shield2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Shield2.jpg; sourceTree = "<group>"; };
 		67A90CF31F7175E0003DDC89 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,8 +66,6 @@
 		677B91891F3AB99C00E6A3E7 /* Panther News */ = {
 			isa = PBXGroup;
 			children = (
-				67A90CF01F717464003DDC89 /* Shield2.jpg */,
-				677B91A81F3ABE4800E6A3E7 /* Shield.jpg */,
 				677B918D1F3AB99C00E6A3E7 /* AppDelegate.h */,
 				677B918E1F3AB99C00E6A3E7 /* AppDelegate.m */,
 				677B91901F3AB99C00E6A3E7 /* FirstViewController.h */,
@@ -160,9 +154,7 @@
 				677B919D1F3AB99C00E6A3E7 /* LaunchScreen.storyboard in Resources */,
 				67A90CF41F7175E0003DDC89 /* TableViewCell.xib in Resources */,
 				677B91981F3AB99C00E6A3E7 /* Main.storyboard in Resources */,
-				67A90CF21F7175AF003DDC89 /* Shield2.jpg in Resources */,
 				677B91AE1F3ACC8000E6A3E7 /* Assets.xcassets in Resources */,
-				677B91A91F3ABE4800E6A3E7 /* Shield.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
