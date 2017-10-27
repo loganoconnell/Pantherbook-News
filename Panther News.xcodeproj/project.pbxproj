@@ -16,9 +16,11 @@
 		677B91AC1F3AC2FF00E6A3E7 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 677B91AB1F3AC2FF00E6A3E7 /* TableViewCell.m */; };
 		677B91AE1F3ACC8000E6A3E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 677B91AD1F3ACC8000E6A3E7 /* Assets.xcassets */; };
 		67A90CF41F7175E0003DDC89 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A90CF31F7175E0003DDC89 /* TableViewCell.xib */; };
+		EC97F41BD5BE4B25B84FB52C /* libPods-Panther News.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE120C700828447008B2307F /* libPods-Panther News.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		184081779C6E2AD382B4052B /* Pods-Panther News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panther News.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panther News/Pods-Panther News.release.xcconfig"; sourceTree = "<group>"; };
 		670737861FA0C07C006E5219 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		670737871FA0C07C006E5219 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		677B91871F3AB99C00E6A3E7 /* Panther News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Panther News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +36,8 @@
 		677B91AB1F3AC2FF00E6A3E7 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		677B91AD1F3ACC8000E6A3E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67A90CF31F7175E0003DDC89 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		BE120C700828447008B2307F /* libPods-Panther News.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Panther News.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E5163462F5A5ABDA3A76AC /* Pods-Panther News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panther News.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Panther News/Pods-Panther News.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC97F41BD5BE4B25B84FB52C /* libPods-Panther News.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +57,8 @@
 			children = (
 				677B91891F3AB99C00E6A3E7 /* Panther News */,
 				677B91881F3AB99C00E6A3E7 /* Products */,
+				AAEEAE4E230E3A4FE06B4CF9 /* Pods */,
+				86F9EC297E9867703E061DEC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +99,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		86F9EC297E9867703E061DEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE120C700828447008B2307F /* libPods-Panther News.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAEEAE4E230E3A4FE06B4CF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1E5163462F5A5ABDA3A76AC /* Pods-Panther News.debug.xcconfig */,
+				184081779C6E2AD382B4052B /* Pods-Panther News.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,9 +123,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 677B91A11F3AB99C00E6A3E7 /* Build configuration list for PBXNativeTarget "Panther News" */;
 			buildPhases = (
+				9FC8A5ED58B486890105C711 /* [CP] Check Pods Manifest.lock */,
 				677B91831F3AB99C00E6A3E7 /* Sources */,
 				677B91841F3AB99C00E6A3E7 /* Frameworks */,
 				677B91851F3AB99C00E6A3E7 /* Resources */,
+				11B9E119F085EB8CED8F6188 /* [CP] Embed Pods Frameworks */,
+				B5850036F8233146FEC9A2D0 /* [CP] Copy Pods Resources */,
+				67BDAC5B1FA2EEBD005EE85E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -159,6 +187,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11B9E119F085EB8CED8F6188 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panther News/Pods-Panther News-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67BDAC5B1FA2EEBD005EE85E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 993c2b93895f428c98324685ea0db58326d5e123 7cc91b4c2aca4ce4c6ab3a0621302f4aac89de9474511ad76c8f65ba8b0d7802";
+		};
+		9FC8A5ED58B486890105C711 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Panther News-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5850036F8233146FEC9A2D0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panther News/Pods-Panther News-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		677B91831F3AB99C00E6A3E7 /* Sources */ = {
@@ -299,8 +391,10 @@
 		};
 		677B91A21F3AB99C00E6A3E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1E5163462F5A5ABDA3A76AC /* Pods-Panther News.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = NXN833X2XS;
 				INFOPLIST_FILE = "Panther News/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -311,6 +405,7 @@
 		};
 		677B91A31F3AB99C00E6A3E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 184081779C6E2AD382B4052B /* Pods-Panther News.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NXN833X2XS;
