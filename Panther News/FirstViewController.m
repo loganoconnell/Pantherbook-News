@@ -11,15 +11,15 @@
 
 #import "FirstViewController.h"
 
+NSString *const kAPIEndpoint = @"https://franklinpanthers.us/wp-json/wp/v2";
+
 @interface FirstViewController ()
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) NSMutableDictionary *images;
-@property (strong, nonatomic) NSMutableDictionary *imageData;
 @property (strong, nonatomic) NSMutableDictionary *authors;
 @property (strong, nonatomic) NSMutableArray *titles;
 @property (strong, nonatomic) NSMutableArray *subtitles;
-@property (nonatomic) BOOL imagesDownloaded;
 @property (nonatomic) BOOL authorsDownloaded;
 @end
 
@@ -50,7 +50,6 @@
     }
     
     self.images = [NSMutableDictionary dictionary];
-    self.imageData = [NSMutableDictionary dictionary];
     self.authors = [NSMutableDictionary dictionary];
     self.titles = [NSMutableArray array];
     self.subtitles = [NSMutableArray array];
@@ -59,7 +58,7 @@
 }
 
 - (void)downloadMainData {
-    NSURL *url = [NSURL URLWithString:@"https://franklinpanthers.us/wp-json/wp/v2/posts"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/posts", kAPIEndpoint]];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
@@ -84,12 +83,10 @@
                 self.loadingIndicator.hidden = YES;
                 
                 [self.tableView reloadData];
-                
                 [self.tableView.refreshControl endRefreshing];
             }];
             
             [self downloadImageMetadata];
-            
             [self downloadAuthorData];
         }
     }];
@@ -99,7 +96,7 @@
 
 - (void)downloadImageMetadata {
     for (NSDictionary *post in self.posts) {
-        NSString *urlString = [NSString stringWithFormat:@"https://franklinpanthers.us/wp-json/wp/v2/media/%@", post[@"featured_media"]];
+        NSString *urlString = [NSString stringWithFormat:@"%@/media/%@", kAPIEndpoint, post[@"featured_media"]];
         
         NSURL *url = [NSURL URLWithString:urlString];
         
@@ -115,7 +112,7 @@
             [self.images setObject:imageLink forKey:key];
             
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.posts indexOfObject:post]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.posts indexOfObject:post]] withRowAnimation:UITableViewRowAnimationNone];
             }];
         }];
         
@@ -123,25 +120,9 @@
     }
 }
 
-/* - (void)downloadImageData:(NSString *)imageLink forKey:(NSString *)key {
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageLink]];
-    UIImage *image = [UIImage imageWithData:imageData];
-    
-    [self.imageData setObject:image forKey:key];
-    
-    if (self.imageData.count == self.posts.count) {
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            NSLog(@"Go ");
-            
-            
-            
-        }];
-    }
-} */
-
 - (void)downloadAuthorData {
     for (NSDictionary *post in self.posts) {
-        NSString *urlString = [NSString stringWithFormat:@"https://franklinpanthers.us/wp-json/wp/v2/users/%@", post[@"author"]];
+        NSString *urlString = [NSString stringWithFormat:@"%@/users/%@", kAPIEndpoint,post[@"author"]];
         
         NSURL *url = [NSURL URLWithString:urlString];
         
@@ -153,8 +134,6 @@
             NSString *name = authorDictionary[@"name"];
             
             NSString *key = [NSString stringWithFormat:@"%@", post[@"author"]];
-            
-            NSLog(@"%@", name);
             
             [self.authors setObject:name forKey:key];
             
@@ -178,8 +157,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Delegate & Data Source methods
-
+// UITableViewDelegate & UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
@@ -219,17 +197,18 @@
         customCell.subtitleLabel.adjustsFontSizeToFitWidth = NO;
         customCell.subtitleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
-        if (self.images.count > indexPath.section) {
+        NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
+        if ([self.images objectForKey:key]) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
                 NSString *imageLink = self.images[key];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UITableViewCell *correctCell = [self.tableView cellForRowAtIndexPath:indexPath];
-                    [((TableViewCell *)correctCell).topImageView sd_setShowActivityIndicatorView:YES];
-                    [((TableViewCell *)correctCell).topImageView sd_setIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                    TableViewCell *correctCell = (TableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+                    [correctCell.topImageView sd_setShowActivityIndicatorView:YES];
+                    [correctCell.topImageView sd_setIndicatorStyle:UIActivityIndicatorViewStyleWhite];
                     
-                    [((TableViewCell *)correctCell).topImageView sd_setImageWithURL:[NSURL URLWithString:imageLink] placeholderImage:nil options:0];
+                    [correctCell.topImageView sd_setImageWithURL:[NSURL URLWithString:imageLink] placeholderImage:nil options:0];
                     [correctCell setNeedsLayout];
                 });
             });
@@ -241,10 +220,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 300;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Recent Posts";
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -259,10 +234,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"Try");
+    
     NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"author"]];
     if ([self.authors objectForKey:key]) {
-        NSLog(@"Succeed");
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SecondViewController *vc = (SecondViewController *)[sb instantiateViewControllerWithIdentifier:@"secondVC"];
         
