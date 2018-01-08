@@ -6,7 +6,11 @@
 //  Copyright © 2017 Logan O'Connell. All rights reserved.
 //
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 #import "SecondViewController.h"
+
+@import SafariServices;
 
 @interface SecondViewController ()
 
@@ -20,7 +24,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share:)];
     
-    self.imageView.image = self.bannerImage;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageLink] placeholderImage:nil options:0];
     
     self.titleLabel.attributedText = self.titleText;
     self.titleLabel.textColor = [UIColor whiteColor];
@@ -37,6 +41,7 @@
     self.textView.attributedText = newText;
     self.textView.textColor = [UIColor darkGrayColor];
     self.textView.font = [UIFont systemFontOfSize:18];
+    self.textView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +52,21 @@
 - (void)share:(id)sender {
     UIActivityViewController *shareVC = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL URLWithString:self.postLink]] applicationActivities:@[]];
     [self presentViewController:shareVC animated:YES completion:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
+// UITEXTVIEWDELEGATE
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:URL];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [self presentViewController:safariVC animated:YES completion:nil];
+    
+    return NO;
 }
 
 /*

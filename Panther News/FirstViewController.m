@@ -6,6 +6,9 @@
 //  Copyright © 2017 Logan O'Connell. All rights reserved.
 //
 
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIView+WebCache.h>
+
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
@@ -108,17 +111,19 @@
             NSString *imageLink = imageDictionary[@"guid"][@"rendered"];
             
             NSString *key = [NSString stringWithFormat:@"%@", post[@"featured_media"]];
-            
+
             [self.images setObject:imageLink forKey:key];
             
-            [self downloadImageData:[imageLink copy] forKey:key];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:[self.posts indexOfObject:post]] withRowAnimation:UITableViewRowAnimationFade];
+            }];
         }];
         
         [task resume];
     }
 }
 
-- (void)downloadImageData:(NSString *)imageLink forKey:(NSString *)key {
+/* - (void)downloadImageData:(NSString *)imageLink forKey:(NSString *)key {
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageLink]];
     UIImage *image = [UIImage imageWithData:imageData];
     
@@ -127,12 +132,12 @@
     if (self.imageData.count == self.posts.count) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             NSLog(@"Go ");
-            self.imagesDownloaded = YES;
             
-            [self.tableView reloadData];
+            
+            
         }];
     }
-}
+} */
 
 - (void)downloadAuthorData {
     for (NSDictionary *post in self.posts) {
@@ -148,6 +153,8 @@
             NSString *name = authorDictionary[@"name"];
             
             NSString *key = [NSString stringWithFormat:@"%@", post[@"author"]];
+            
+            NSLog(@"%@", name);
             
             [self.authors setObject:name forKey:key];
             
@@ -212,17 +219,18 @@
         customCell.subtitleLabel.adjustsFontSizeToFitWidth = NO;
         customCell.subtitleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
-        if (self.imageData.count > 0 && self.imageData.count - 1 >= indexPath.section) {
+        if (self.images.count > indexPath.section) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
-                UIImage *image = self.imageData[key];
+                NSString *imageLink = self.images[key];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([[self.tableView indexPathsForVisibleRows] containsObject:indexPath]) {
-                        UITableViewCell *correctCell = [self.tableView cellForRowAtIndexPath:indexPath];
-                        ((TableViewCell *)correctCell).topImageView.image = image;
-                        [correctCell setNeedsLayout];
-                    }
+                    UITableViewCell *correctCell = [self.tableView cellForRowAtIndexPath:indexPath];
+                    [((TableViewCell *)correctCell).topImageView sd_setShowActivityIndicatorView:YES];
+                    [((TableViewCell *)correctCell).topImageView sd_setIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                    
+                    [((TableViewCell *)correctCell).topImageView sd_setImageWithURL:[NSURL URLWithString:imageLink] placeholderImage:nil options:0];
+                    [correctCell setNeedsLayout];
                 });
             });
          }
@@ -251,13 +259,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (self.imagesDownloaded && self.authorsDownloaded) {
+    NSLog(@"Try");
+    NSString *key = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"author"]];
+    if ([self.authors objectForKey:key]) {
+        NSLog(@"Succeed");
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         SecondViewController *vc = (SecondViewController *)[sb instantiateViewControllerWithIdentifier:@"secondVC"];
         
         NSString *imageKey = [NSString stringWithFormat:@"%@", self.posts[indexPath.section][@"featured_media"]];
-        vc.bannerImage = self.imageData[imageKey];
+        vc.imageLink = self.images[imageKey];
         
         vc.titleText = self.titles[indexPath.section];
         

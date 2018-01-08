@@ -7,4 +7,5 @@ target 'Panther News' do
 
   # Pods for Panther News
   pod 'Crashlytics'
+  pod 'SDWebImage'
 end
